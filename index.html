@@ -169,6 +169,14 @@
       transform: translateX(4px);
     }
 
+    .tags {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      align-self: flex-start;
+    }
+
     .tag {
       display: inline-block;
       font-size: 0.7rem;
@@ -177,8 +185,31 @@
       background: color-mix(in srgb, var(--accent) 12%, transparent);
       color: var(--accent);
       font-weight: 500;
-      margin-top: 1rem;
-      align-self: flex-start;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 99px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .badge.concept {
+      background: rgba(251, 191, 36, 0.12);
+      color: #fbbf24;
+    }
+
+    .badge.beta {
+      background: rgba(244, 114, 182, 0.12);
+      color: #f472b6;
+    }
+
+    .badge.inactive {
+      background: rgba(150, 150, 150, 0.12);
+      color: #888;
     }
 
     footer {
@@ -241,7 +272,7 @@
         </div>
         <span class="arrow">&rarr;</span>
       </div>
-      <span class="tag">star wars</span>
+      <div class="tags"><span class="tag">star wars</span></div>
     </a>
 
     <a href="https://whatsapp-events-nyc-production.up.railway.app/" target="_blank" rel="noopener" class="card" style="--accent: #25d366;" data-theme="tools">
@@ -253,7 +284,7 @@
         </div>
         <span class="arrow">&rarr;</span>
       </div>
-      <span class="tag">productivity</span>
+      <div class="tags"><span class="tag">productivity</span></div>
     </a>
 
     <a href="https://sorter-bvw.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #60a5fa;" data-theme="tools">
@@ -261,11 +292,11 @@
       <div class="card-top">
         <div>
           <h2>Gmail Sorter</h2>
-          <p>Tame inbox chaos&mdash;sorts and organizes your Gmail so you can focus on the messages that actually matter.</p>
+          <p>Tame inbox chaos&mdash;group by sender, subject, find receipts &amp; invoices, or surface action items with the tasks dashboard. Bulk-archive with a click.</p>
         </div>
         <span class="arrow">&rarr;</span>
       </div>
-      <span class="tag">email</span>
+      <div class="tags"><span class="tag">email</span></div>
     </a>
 
     <a href="https://dune-strategy-guide.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #f5c542;" data-theme="fun">
@@ -277,7 +308,7 @@
         </div>
         <span class="arrow">&rarr;</span>
       </div>
-      <span class="tag">board games</span>
+      <div class="tags"><span class="tag">board games</span></div>
     </a>
 
     <a href="https://multi-dimensional-data.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #c084fc;" data-theme="data">
@@ -289,7 +320,7 @@
         </div>
         <span class="arrow">&rarr;</span>
       </div>
-      <span class="tag">data viz</span>
+      <div class="tags"><span class="badge beta">Early Beta</span><span class="badge inactive">No longer active</span><span class="tag">data viz</span></div>
     </a>
 
     <a href="https://third-door-fundraiser.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #e8a87c;" data-theme="community">
@@ -297,11 +328,11 @@
       <div class="card-top">
         <div>
           <h2>The 3rd Door Brooklyn</h2>
-          <p>Community fundraiser for a donation-based yoga &amp; arts studio in DUMBO. Two paths to participate: interest-free community loans or donations to a solidarity fund.</p>
+          <p>Concept site built in 15 minutes for a donation-based yoga &amp; arts studio in DUMBO. Showcases community loans and a solidarity fund&mdash;no functioning payment portal.</p>
         </div>
         <span class="arrow">&rarr;</span>
       </div>
-      <span class="tag">fundraising</span>
+      <div class="tags"><span class="badge concept">Concept</span><span class="tag">fundraising</span></div>
     </a>
 
   </main>
