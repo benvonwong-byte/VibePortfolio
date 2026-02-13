@@ -17,7 +17,7 @@
 
     header {
       text-align: center;
-      padding: 5rem 2rem 3rem;
+      padding: 5rem 2rem 2rem;
       position: relative;
     }
 
@@ -46,23 +46,62 @@
       font-weight: 400;
     }
 
+    /* Filter bar */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 2rem 1.5rem 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      color: #888;
+      padding: 0.4rem 1rem;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .filter-btn:hover {
+      border-color: #444;
+      color: #ccc;
+    }
+
+    .filter-btn.active {
+      background: #1e1e2e;
+      border-color: #7c3aed;
+      color: #c4b5fd;
+    }
+
+    /* Grid */
     .projects {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 1rem 1.5rem 5rem;
       display: grid;
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 640px) {
+      .projects { grid-template-columns: 1fr; }
     }
 
     .card {
       background: #141414;
       border: 1px solid #222;
       border-radius: 16px;
-      padding: 2rem;
+      padding: 1.75rem;
       text-decoration: none;
       color: inherit;
-      display: block;
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -85,22 +124,26 @@
 
     .card:hover::before { opacity: 1; }
 
+    .card.hidden {
+      display: none;
+    }
+
     .card-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 0.75rem;
+      flex: 1;
     }
 
     .emoji {
-      font-size: 2rem;
+      font-size: 1.75rem;
       line-height: 1;
       margin-bottom: 0.75rem;
       display: block;
     }
 
     .card h2 {
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: #f0f0f0;
       margin-bottom: 0.5rem;
@@ -108,8 +151,8 @@
 
     .card p {
       color: #999;
-      line-height: 1.6;
-      font-size: 0.95rem;
+      line-height: 1.55;
+      font-size: 0.9rem;
     }
 
     .arrow {
@@ -117,7 +160,7 @@
       font-size: 1.25rem;
       transition: color 0.25s ease, transform 0.25s ease;
       flex-shrink: 0;
-      margin-left: 1rem;
+      margin-left: 0.75rem;
       margin-top: 0.15rem;
     }
 
@@ -128,13 +171,14 @@
 
     .tag {
       display: inline-block;
-      font-size: 0.75rem;
-      padding: 0.25rem 0.65rem;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
       border-radius: 99px;
       background: color-mix(in srgb, var(--accent) 12%, transparent);
       color: var(--accent);
       font-weight: 500;
       margin-top: 1rem;
+      align-self: flex-start;
     }
 
     footer {
@@ -159,11 +203,12 @@
       transform: translateY(20px);
       animation: fadeUp 0.5s ease forwards;
     }
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-    .card:nth-child(3) { animation-delay: 0.3s; }
-    .card:nth-child(4) { animation-delay: 0.4s; }
-    .card:nth-child(5) { animation-delay: 0.5s; }
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .card:nth-child(4) { animation-delay: 0.2s; }
+    .card:nth-child(5) { animation-delay: 0.25s; }
+    .card:nth-child(6) { animation-delay: 0.3s; }
 
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
@@ -177,66 +222,86 @@
     <p class="subtitle">little things I built for fun</p>
   </header>
 
+  <nav class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="fun">Fun &amp; Games</button>
+    <button class="filter-btn" data-filter="tools">Tools</button>
+    <button class="filter-btn" data-filter="data">Data</button>
+    <button class="filter-btn" data-filter="community">Community</button>
+  </nav>
+
   <main class="projects">
 
-    <a href="https://third-door-fundraiser.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #e8a87c;">
-      <span class="emoji">🧘</span>
+    <a href="https://zigzag-explorer-vw.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #f472b6;" data-theme="fun">
+      <span class="emoji">🌌</span>
       <div class="card-top">
         <div>
-          <h2>The 3rd Door Brooklyn</h2>
-          <p>Community fundraiser for a donation-based yoga &amp; arts studio in DUMBO. Raise $30k through community loans and a solidarity fund&mdash;because we don't need saviors, we need neighbors.</p>
+          <h2>ZigZag Explorer</h2>
+          <p>A non-linear journey through the Star Wars universe. Explore characters, planets, and lore through an unconventional zigzag navigation pattern.</p>
         </div>
         <span class="arrow">&rarr;</span>
       </div>
-      <span class="tag">fundraising</span>
+      <span class="tag">star wars</span>
     </a>
 
-    <a href="https://whatsapp-events-nyc-production.up.railway.app/" target="_blank" rel="noopener" class="card" style="--accent: #25d366;">
+    <a href="https://whatsapp-events-nyc-production.up.railway.app/" target="_blank" rel="noopener" class="card" style="--accent: #25d366;" data-theme="tools">
       <span class="emoji">📅</span>
       <div class="card-top">
         <div>
           <h2>NYC WhatsApp Events</h2>
-          <p>Scans WhatsApp group chats, auto-extracts events, deduplicates, and organizes them into a browsable calendar. Never miss a gathering again.</p>
+          <p>Scans WhatsApp messages to auto-extract NYC events, deduplicates them, and presents a browsable calendar with search, filtering, and favorites.</p>
         </div>
         <span class="arrow">&rarr;</span>
       </div>
       <span class="tag">productivity</span>
     </a>
 
-    <a href="https://sorter-bvw.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #60a5fa;">
+    <a href="https://sorter-bvw.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #60a5fa;" data-theme="tools">
       <span class="emoji">📬</span>
       <div class="card-top">
         <div>
           <h2>Gmail Sorter</h2>
-          <p>A tool to tame inbox chaos&mdash;sorts and organizes your Gmail so you can focus on the messages that actually matter.</p>
+          <p>Tame inbox chaos&mdash;sorts and organizes your Gmail so you can focus on the messages that actually matter.</p>
         </div>
         <span class="arrow">&rarr;</span>
       </div>
       <span class="tag">email</span>
     </a>
 
-    <a href="https://dune-strategy-guide.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #f5c542;">
+    <a href="https://dune-strategy-guide.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #f5c542;" data-theme="fun">
       <span class="emoji">🏜️</span>
       <div class="card-top">
         <div>
           <h2>Dune: Imperium Strategy Guide</h2>
-          <p>Interactive strategy guide for the board game. Pick your player count, choose your leader, and get tailored recommendations to crush your friends.</p>
+          <p>Interactive strategy companion for the board game. Select your player count, pick a leader, and get personalized recommendations to dominate.</p>
         </div>
         <span class="arrow">&rarr;</span>
       </div>
       <span class="tag">board games</span>
     </a>
 
-    <a href="https://multi-dimensional-data.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #c084fc;">
+    <a href="https://multi-dimensional-data.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #c084fc;" data-theme="data">
       <span class="emoji">📊</span>
       <div class="card-top">
         <div>
           <h2>Multi-Dimensional Data Explorer</h2>
-          <p>Visualize and interact with complex datasets across multiple dimensions. Explore relationships and patterns in multifaceted data.</p>
+          <p>Visualize and interact with complex datasets across multiple dimensions. Explore relationships and patterns from various perspectives.</p>
         </div>
         <span class="arrow">&rarr;</span>
       </div>
       <span class="tag">data viz</span>
+    </a>
+
+    <a href="https://third-door-fundraiser.web.app/" target="_blank" rel="noopener" class="card" style="--accent: #e8a87c;" data-theme="community">
+      <span class="emoji">🧘</span>
+      <div class="card-top">
+        <div>
+          <h2>The 3rd Door Brooklyn</h2>
+          <p>Community fundraiser for a donation-based yoga &amp; arts studio in DUMBO. Two paths to participate: interest-free community loans or donations to a solidarity fund.</p>
+        </div>
+        <span class="arrow">&rarr;</span>
+      </div>
+      <span class="tag">fundraising</span>
     </a>
 
   </main>
@@ -244,6 +309,27 @@
   <footer>
     built with vibes by <a href="#">Von Wong</a>
   </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.theme === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
